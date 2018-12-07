@@ -1,5 +1,6 @@
 pragma solidity >=0.4.22 <0.6.0;
 
+
 contract IdentityManager {
     uint totalOfIdentitiesEverCreated;
     mapping (address => bytes32) addressToIdentity;
@@ -10,7 +11,11 @@ contract IdentityManager {
     event MemberStateChanged(bytes32 indexed identity, address indexed member, bool isMember);
     event SecretAdded(bytes32 indexed identity, bytes32 secret);
     event SecretConsumed(bytes32 indexed identity, bytes32 secret);
-    
+
+    /*
+     * Centre du contrat: on soumet l'identifiant aléatoire et émet
+     * l'évènement associé.
+     */
     function submitRandomID(bytes32 randomID) public {
         if (addressToIdentity[msg.sender] == 0x0) {
             // Create identity
@@ -28,6 +33,9 @@ contract IdentityManager {
         emit GotNewRandomID(randomID, addressToIdentity[msg.sender]);
     }
     
+    /*
+     * Permet d'ajouter ou retirer des appareils
+     */
     function changeMemberState(address member, bool isMember) public {
         bytes32 identity = addressToIdentity[msg.sender];
         
@@ -47,7 +55,10 @@ contract IdentityManager {
     }
     
     // Recovery
-    
+
+    /*
+     * Ajoute un secret de récupération: secret = hash(identity, recovery phrase)
+     */
     function changeRecoverySecret(bytes32 secret) public {
         bytes32 identity = addressToIdentity[msg.sender];
         require(identity != 0x0, "You have no identity, create one");
@@ -57,6 +68,9 @@ contract IdentityManager {
         emit SecretAdded(identity, secret);
     }
     
+    /*
+     * Dévoile le secret et ajoute le nouvel appareil de backup
+     */
     function triggerRecoveryTrap(bytes32 revealedSecret, address newMember) public {
         bytes32 identity = addressToIdentity[msg.sender];
         require(identity != 0x0, "You have no identity, create one");
