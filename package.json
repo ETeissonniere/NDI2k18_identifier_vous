@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:ETeissonniere/NDI2k18_identifier_vous.git",
   "author": "Eliott Teissonniere <git.eliott@teissonniere.org>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
