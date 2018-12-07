@@ -1,5 +1,5 @@
 Web3 = require 'web3'
-web3 = new Web3(new Web3.providers.WebsocketProvider('xss://ropsten.infura.io/ws'))
+web3 = new Web3(new Web3.providers.WebsocketProvider('wss://ropsten.infura.io/ws'))
 
 fs = require 'fs'
 
@@ -15,8 +15,9 @@ module.exports = () ->
 	return {
 		streamRandomId: (token, callback) ->
 			hashToken = web3.utils.sha3 token
+			console.log hashToken
 			contract.once 'GotNewRandomID', {filter: {randomID: hashToken}}, (error, event) ->
-				callback error, event
+				callback event.returnValues.identity
 		,
 		submitRandomId: (token) ->
 			return true
