@@ -1,0 +1,156 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "revealedSecret",
+				"type": "bytes32"
+			},
+			{
+				"name": "newMember",
+				"type": "address"
+			}
+		],
+		"name": "triggerRecoveryTrap",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "member",
+				"type": "address"
+			},
+			{
+				"name": "isMember",
+				"type": "bool"
+			}
+		],
+		"name": "changeMemberState",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "randomID",
+				"type": "bytes32"
+			}
+		],
+		"name": "submitRandomID",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "secret",
+				"type": "bytes32"
+			}
+		],
+		"name": "changeRecoverySecret",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "randomID",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "identity",
+				"type": "bytes32"
+			}
+		],
+		"name": "GotNewRandomID",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "identity",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"name": "member",
+				"type": "address"
+			}
+		],
+		"name": "NewIdentityCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "identity",
+				"type": "bytes32"
+			},
+			{
+				"indexed": true,
+				"name": "member",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "isMember",
+				"type": "bool"
+			}
+		],
+		"name": "MemberStateChanged",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "identity",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "secret",
+				"type": "bytes32"
+			}
+		],
+		"name": "SecretAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "identity",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "secret",
+				"type": "bytes32"
+			}
+		],
+		"name": "SecretConsumed",
+		"type": "event"
+	}
+]
