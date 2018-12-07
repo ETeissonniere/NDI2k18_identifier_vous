@@ -15,7 +15,7 @@ module.exports = () ->
 	return {
 		streamRandomId: (token, callback) ->
 			hashToken = web3.utils.sha3 token
-			console.log hashToken
+			console.log token, hashToken
 			contract.once 'GotNewRandomID', {filter: {randomID: hashToken}}, (error, event) ->
 				callback event.returnValues.identity
 		,
